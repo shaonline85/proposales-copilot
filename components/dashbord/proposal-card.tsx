@@ -1,5 +1,5 @@
 import { StatusBadge } from "./status-badge";
-import type { Proposal } from "../types/proposal-types";
+import type { ProposalSummary } from "@/types/proposal-types";
 
 function formatDate(timestamp: number) {
 	return new Date(timestamp).toLocaleDateString("en-SE", {
@@ -9,7 +9,7 @@ function formatDate(timestamp: number) {
 	});
 }
 
-export function ProposalCard({ proposal }: { proposal: Proposal }) {
+export function ProposalCard({ proposal }: { proposal: ProposalSummary }) {
 	return (
 		<article className="rounded-xl border bg-white p-6 shadow-sm">
 			<div className="flex items-start justify-between gap-4">

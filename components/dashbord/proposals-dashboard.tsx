@@ -7,11 +7,11 @@ import { useChat } from "@ai-sdk/react";
 import { ChatPanel } from "../copilot/chat-panel";
 import { DashboardHeader } from "./header";
 import { ProposalCard } from "./proposal-card";
-import type { ChatMessageItem, Proposal } from "@/types/proposal-types";
+import type { ChatMessageItem, ProposalSummary } from "@/types/proposal-types";
 import { StatsGrid } from "./stats-grid";
 
 export function ProposalDashboard() {
-	const [proposals, setProposals] = useState<Proposal[]>([]);
+	const [proposals, setProposals] = useState<ProposalSummary[]>([]);
 	const [loading, setLoading] = useState(true);
 	const [input, setInput] = useState("");
 	const [error, setError] = useState<string | null>(null);

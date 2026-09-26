@@ -1,5 +1,5 @@
 import { StatCard } from "./stat-card";
-import type { ProposalStats } from "../types/proposal-types";
+import type { ProposalStats } from "@/types/proposal-types";
 
 export function StatsGrid({ stats }: { stats: ProposalStats }) {
 	return (

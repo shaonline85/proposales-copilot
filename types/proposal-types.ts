@@ -1,18 +1,30 @@
-export type Proposal = {
+export type ProposalesProposalSearchItem = {
+  uuid: string;
+  title: string;
+  status: string;
+  version: number;
+  company_id: number;
+  url: string;
+  created_at: string;
+  updated_at: string;
+  data: unknown;
+};
+
+export type ProposalesProposalSearchResponse = {
+  data: ProposalesProposalSearchItem[];
+};
+
+export type ProposalSummary = {
   uuid: string;
   title: string;
   status: string;
   version: number | null;
   companyId: number;
   url: string;
-  createdAt: number;
-  updatedAt: number;
-  data: {
-    booking?: {
-      number?: string;
-      status?: string;
-    };
-  };
+  createdAt: string;
+  updatedAt: string;
+  data: unknown;
+
 };
 
 export type ChatPart = {

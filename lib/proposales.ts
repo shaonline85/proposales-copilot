@@ -1,3 +1,4 @@
+import { ProposalesProposalSearchResponse, ProposalSummary } from "@/types/proposal-types";
 
 const PROPOSALES_API_URL = process.env.PROPOSALES_API_URL;
 
@@ -14,7 +15,7 @@ function getHeaders() {
   };
 }
 
-export async function searchProposals() {
+export async function searchProposals(): Promise<ProposalSummary[]> {
   const response = await fetch(
     `${PROPOSALES_API_URL}/v3/proposal-search?limit=25`,
     {
@@ -29,9 +30,9 @@ export async function searchProposals() {
     );
   }
 
-  const result = await response.json();
+  const result =  (await response.json()) as ProposalesProposalSearchResponse;
 
-  return result.data.map((proposal: any) => ({
+  return result.data.map((proposal) => ({
     uuid: proposal.uuid,
     title: proposal.title,
     status: proposal.status,
