@@ -1,7 +1,7 @@
 import { StatusBadge } from "./status-badge";
 import type { ProposalSummary } from "@/types/proposal-types";
 
-function formatDate(timestamp: number) {
+function formatDate(timestamp: string) {
 	return new Date(timestamp).toLocaleDateString("en-SE", {
 		year: "numeric",
 		month: "short",

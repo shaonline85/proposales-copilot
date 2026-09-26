@@ -7,7 +7,12 @@ export type ProposalesProposalSearchItem = {
   url: string;
   created_at: string;
   updated_at: string;
-  data: unknown;
+  data: {
+    booking?: {
+      number?: string;
+      status?: string;
+    };
+  };
 };
 
 export type ProposalesProposalSearchResponse = {
@@ -23,7 +28,12 @@ export type ProposalSummary = {
   url: string;
   createdAt: string;
   updatedAt: string;
-  data: unknown;
+  data: {
+    booking?: {
+      number?: string;
+      status?: string;
+    };
+  };
 
 };
 
