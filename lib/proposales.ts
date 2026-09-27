@@ -1,4 +1,4 @@
-import { ProposalesProposalSearchResponse, ProposalSummary } from "@/types/proposal-types";
+import { ProposalesProposalResponse, ProposalesProposalSearchResponse, ProposalSummary } from "@/types/proposal-types";
 
 const PROPOSALES_API_URL = process.env.PROPOSALES_API_URL;
 
@@ -60,7 +60,10 @@ export async function getProposal(uuid: string) {
     );
   }
 
-  const proposal = await response.json();
+  const result =
+    (await response.json()) as ProposalesProposalResponse;
+
+  const proposal = result.data;
 
   return {
     uuid: proposal.uuid,
@@ -76,19 +79,17 @@ export async function getProposal(uuid: string) {
     },
 
     currency: proposal.currency,
-
     valueWithTax: proposal.value_with_tax / 100,
     valueWithoutTax: proposal.value_without_tax / 100,
 
-    createdAt: proposal.created_at,
     updatedAt: proposal.updated_at,
     expiresAt: proposal.expires_at,
 
     booking: proposal.data?.booking,
-
     tracking: proposal.tracking,
+    blocks: proposal.blocks,
 
+    hasBeenSent: proposal.has_been_sent,
     url: `https://secure.proposales.com/proposals/${proposal.uuid}/view`,
   };
-  // return result.data;
 }

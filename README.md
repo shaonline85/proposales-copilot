@@ -1,36 +1,101 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Proposales Copilot
 
-## Getting Started
+An AI-powered sales assistant for [Proposales](https://www.proposales.com/) that helps hospitality teams understand their proposal pipeline using natural language.
 
-First, run the development server:
+The application combines the Proposales API with Google Gemini through the Vercel AI SDK. Users can see their proposal pipeline in a dashboard and ask the Copilot questions about proposal status, customers, values, bookings, expiry dates, and follow-ups.
+
+## Features
+
+- Proposal dashboard with:
+  - Active / accepted / rejected / total proposal counts
+  - Proposal status
+  - Version
+  - Booking number and booking status
+  - Creation date
+  - Direct link to the Proposales proposal
+- AI Copilot powered by Gemini
+- Streaming AI responses
+- Tool-based AI access to Proposales data
+- Natural-language questions about the proposal pipeline
+- Proposal-specific detail lookup
+- Quick-start questions in the chat
+- Server-side handling of Proposales and Gemini credentials
+
+## Example questions
+
+The Copilot can currently answer questions such as:
+
+- "Which proposals are active?"
+- "Which proposals have been accepted?"
+- "How many proposals do I have?"
+- "Which proposals need my attention?"
+- "Tell me about the Stockholm Summit proposal."
+- "Who is the customer for this proposal?"
+- "What is the value of the proposal?"
+- "When does it expire?"
+- "What is the booking status?"
+
+The Copilot is intentionally limited to information exposed through its tools. It does not invent information that is not available from the Proposales API.
+
+## Tech stack
+
+- Next.js 16
+- React 19
+- TypeScript
+- Tailwind CSS 4
+- Vercel AI SDK
+- Google Gemini
+- Zod
+- Proposales API
+
+## Getting started
+
+### Prerequisites
+
+- Node.js
+- npm
+- A Proposales API key
+- A Google Gemini API key
+
+### Install dependencies
+
+```bash
+npm install
+```
+
+### Configure environment variables
+
+Create `.env.local`:
+
+```env
+PROPOSALES_API_KEY=your_proposales_api_key
+GOOGLE_GENERATIVE_AI_API_KEY=your_google_generative_ai_api_key
+PROPOSALES_API_URL=https://api.proposales.com
+```
+
+The API keys are server-side only. They must not be exposed through `NEXT_PUBLIC_*` environment variables or committed to source control.
+
+### Run locally
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Production build
 
-## Learn More
+```bash
+npm run build
+npm run start
+```
 
-To learn more about Next.js, take a look at the following resources:
+### Lint
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run lint
+```
