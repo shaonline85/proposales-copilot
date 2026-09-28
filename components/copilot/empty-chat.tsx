@@ -10,7 +10,7 @@ export function EmptyChat({
 	onQuestion: (question: string) => void;
 }) {
 	return (
-		<div className="flex h-full min-h-[400px] flex-col items-center justify-center text-center">
+		<div className="flex h-full min-h-100 flex-col items-center justify-center text-center">
 			<div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-100 text-sm font-bold text-gray-700">
 				AI
 			</div>

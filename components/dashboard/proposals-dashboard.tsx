@@ -6,8 +6,8 @@ import { useChat } from "@ai-sdk/react";
 
 import { ChatPanel } from "../copilot/chat-panel";
 import { DashboardHeader } from "./header";
-import { ProposalCard } from "./proposal-card";
-import type { ChatMessageItem, ProposalSummary } from "@/types/proposal-types";
+import { ProposalListState } from "./proposal-list-state";
+import type { ProposalSummary } from "@/types/proposal-types";
 import { StatsGrid } from "./stats-grid";
 
 export function ProposalDashboard() {
@@ -80,7 +80,9 @@ export function ProposalDashboard() {
 	if (loading) {
 		return (
 			<main className="min-h-screen bg-gray-50 p-8 text-gray-900">
-				<div className="mx-auto max-w-7xl">Loading proposals...</div>
+				<div className="mx-auto max-w-7xl">
+					<ProposalListState loading error={null} proposals={[]} />
+				</div>
 			</main>
 		);
 	}
@@ -104,26 +106,16 @@ export function ProposalDashboard() {
 								</span>
 							</div>
 
-							{error ? (
-								<div className="mt-4 rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-700">
-									{error}
-								</div>
-							) : proposals.length === 0 ? (
-								<div className="mt-4 rounded-xl border border-dashed border-gray-300 bg-white p-6 text-sm text-gray-500">
-									No proposals available.
-								</div>
-							) : (
-								<div className="mt-4 space-y-4">
-									{proposals.map((proposal) => (
-										<ProposalCard key={proposal.uuid} proposal={proposal} />
-									))}
-								</div>
-							)}
+							<ProposalListState
+								loading={false}
+								error={error}
+								proposals={proposals}
+							/>
 						</section>
 					</section>
 
 					<ChatPanel
-						messages={messages as ChatMessageItem[]}
+						messages={messages}
 						status={status}
 						input={input}
 						onInputChange={setInput}

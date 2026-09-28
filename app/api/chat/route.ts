@@ -5,9 +5,9 @@ import {
   UIMessage,
 } from "ai";
 
-import { google } from "@ai-sdk/google";
-import { proposalTools } from "@/lib/ai/tools";
-import { systemPrompt } from "./systemPrompt";
+import { proposalTools } from "@/lib/ai/agents";
+import { defaultChatModel } from "@/lib/ai/model";
+import { systemPrompt } from "@/lib/ai/prompts";
 
 export const maxDuration = 30;
 
@@ -16,7 +16,7 @@ export async function POST(req: Request) {
     await req.json();
 
   const result = streamText({
-    model: google("gemini-3-flash-preview"),
+    model: defaultChatModel,
     system: systemPrompt,
     messages: await convertToModelMessages(messages),
     tools: proposalTools,

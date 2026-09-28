@@ -1,6 +1,7 @@
+import type { UIMessage } from "ai";
+
 import { EmptyChat } from "./empty-chat";
 import { ChatMessage } from "./chat-message";
-import type { ChatMessageItem } from "../../types/proposal-types";
 
 export function ChatPanel({
 	messages,
@@ -10,7 +11,7 @@ export function ChatPanel({
 	onSubmit,
 	onQuestion,
 }: {
-	messages: ChatMessageItem[];
+	messages: UIMessage[];
 	status: string;
 	input: string;
 	onInputChange: (value: string) => void;
@@ -18,7 +19,7 @@ export function ChatPanel({
 	onQuestion: (question: string) => void;
 }) {
 	return (
-		<aside className="flex h-[650px] min-h-0 flex-col rounded-2xl border bg-white shadow-sm">
+		<aside className="flex h-162.5 min-h-0 flex-col rounded-2xl border bg-white shadow-sm">
 			<div className="border-b p-5">
 				<div className="flex items-center gap-3">
 					<div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-900 text-sm font-bold text-white">

@@ -1,3 +1,12 @@
+import type { UIMessage } from "ai";
+
+export type ProposalStatus =
+  | "active"
+  | "accepted"
+  | "draft"  
+  | "expired"
+  | (string & {});
+
 export type ProposalBooking = {
   number?: string;
   status?: string;
@@ -41,36 +50,29 @@ export type ProposalBlock = {
 export type ProposalesProposal = {
   uuid: string;
   title: string;
-  
-  status: string;
+  status: ProposalStatus;
   version: number;
-  
   recipient_company_name: string | null;
   recipient_email: string | null;
-  recipient_name: string | null;  
-
+  recipient_name: string | null;
   currency: string;
   value_with_tax: number;
   value_without_tax: number;
-
   expires_at: number | null;
   updated_at: number;
-
   data: {
-    booking?: ProposalBooking;
+    booking?: ProposalBooking | null;
   };
-
   blocks: ProposalBlock[];
   tracking: ProposalTracking;
-
   has_been_sent: boolean;
-  series_uuid: string;  
+  series_uuid: string;
 };
 
 export type ProposalesProposalSearchItem = {
   uuid: string;
   title: string;
-  status: string;
+  status: ProposalStatus;
   version: number;
   company_id: number;
   url: string;
@@ -80,7 +82,7 @@ export type ProposalesProposalSearchItem = {
     booking?: {
       number?: string;
       status?: string;
-    };
+    } | null;
   };
 };
 
@@ -95,7 +97,7 @@ export type ProposalesProposalResponse = {
 export type ProposalSummary = {
   uuid: string;
   title: string;
-  status: string;
+  status: ProposalStatus;
   version: number | null;
   companyId: number;
   url: string;
@@ -105,21 +107,11 @@ export type ProposalSummary = {
     booking?: {
       number?: string;
       status?: string;
-    };
+    } | null;
   };
-
-}; 
-
-export type ChatPart = {
-  type?: string;
-  text?: string;
 };
 
-export type ChatMessageItem = {
-  id: string;
-  role: string;
-  parts?: ChatPart[];
-};
+export type ChatMessageItem = UIMessage;
 
 export type ProposalStats = {
   active: number;

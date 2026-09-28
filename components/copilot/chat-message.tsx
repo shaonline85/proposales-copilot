@@ -1,6 +1,6 @@
-import type { ChatMessageItem } from "../../types/proposal-types";
+import type { UIMessage } from "ai";
 
-export function ChatMessage({ message }: { message: ChatMessageItem }) {
+export function ChatMessage({ message }: { message: UIMessage }) {
 	const isUser = message.role === "user";
 
 	return (
